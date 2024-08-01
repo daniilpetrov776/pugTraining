@@ -1,40 +1,18 @@
 extends ../components/base/layout
-
+include ../components/blocks/cards.pug
 block variables
-  - const title = "Список страниц"
+  - const title = "ProjectName" //- на страницах кроме главной используйте О нас — ProjectName
+  - const wrapperMods = ""
+  - const hasHeader = true
+  - const headerMods = ""
+  - const hasFooter = true
+  - const footerMods = ""
+  - const currentUrl = "index.html" //- для остальных страниц пишем пустую строку или индекс активного headerLinks
 
 block main
-  style
-    include ../../sass/inline/sitemap.css
-
-  -
-    const pages = [
-      {
-        name: "UI-kit — ui-kit.html",
-        src: "ui-kit.html"
-      },
-      {
-        name: "Главная — index.html",
-        src: "index.html"
-      },
-    ]
-
   main
-    .sitemap
-      .container
-        img(src="https://via.placeholder.com/300x150", width="300", alt="Логотип проекта")
-        h1 Список страниц
-        ol
-          each page in pages
-            li
-              if page.id
-                label(for=page.id)
-                  span!= page.name
-                input.visually-hidden(type="checkbox", checked=true, id=page.id)
-                div
-                  ul
-                    each item in page.innerList
-                      li
-                        a(href= item.src)= item.name
-              else
-                a(href= page.src)= page.name
+    //- на странице запрещен "голый" код
+    //- все блоки вставляются из папки pug/components/blocks
+    +intro()
+    +cards()
+block modals
